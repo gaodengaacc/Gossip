@@ -1,0 +1,135 @@
+apply plugin: 'com.android.application'
+apply plugin: 'im.fir.plugin.gradle'
+
+def buildTime() {
+    return new Date().format("yyMMddHHmmss", TimeZone.getTimeZone("GMT+8"))
+}
+def getGitCommitTime() {
+    // maybe cause Exception
+    return 'git show -s --format=%cd HEAD'.execute().text.trim()
+}
+def _versionCodeNew() {
+    return Integer.parseInt(new Date(getGitCommitTime()).format("yyMMddhhmm", TimeZone.getTimeZone("GMT+8")));
+}
+
+def getGitCommitHash() {
+    try {
+        return 'git rev-parse --short HEAD'.execute().text.trim()
+    } catch (Throwable th) {
+        return "";
+    }
+}
+android {
+    compileSdkVersion rootProject.ext.compile_version
+    buildToolsVersion rootProject.ext.build_version
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('keystore/debug.keystore')
+            storePassword 'android'
+        }
+        release {
+            keyAlias '名号大师'
+            keyPassword 'gaodeng,.521'
+            storeFile file('keystore/gordon.keystore')
+            storePassword 'gaodeng,.521'
+        }
+    }
+    defaultConfig {
+        applicationId rootProject.ext.application_id
+        minSdkVersion rootProject.ext.min_version
+        targetSdkVersion rootProject.ext.target_version
+        versionCode 20170401
+        versionName rootProject.ext.version_name
+        multiDexEnabled true
+        signingConfig signingConfigs.debug
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled true
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            shrinkResources false
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix = " debug-${buildTime()}"
+            applicationIdSuffix = 'debug'
+            manifestPlaceholders.putAll([
+                    APPLICATION_ID    : defaultConfig.applicationId + '.' + applicationIdSuffix,
+            ])
+        }
+        release {
+            debuggable false
+            signingConfig signingConfigs.release
+            //是否清理无用资源
+            shrinkResources false
+            //是否启用zipAlign压缩
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders.putAll([
+                    APPLICATION_ID    : defaultConfig.applicationId,])
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    productFlavors {
+        official {
+        }
+        baidu {
+        }
+        apk91 {
+        }
+        hiapk {
+        }
+        wandoujia {
+        }
+        tencent {
+        }
+        xiaomi {
+        }
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders.putAll([
+                VERSION_CODE      : defaultConfig.versionCode,
+                VERSION_NAME      : defaultConfig.versionName,])
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            def path = getProjectDir().absolutePath;
+            def fileName = "${variant.buildType.name}_Gossip_v${defaultConfig.versionName}_${buildTime()}_${variant.productFlavors[0].name}.apk"
+            if (variant.buildType.name == 'debug') {
+                fileName = 'app-debug.apk'
+            }
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                output.outputFile = new File(path, fileName)
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$support_version"
+}
+fir {
+    //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
+    apiToken '7825b3e3a96e631f6db24571927b5583'
+    //可选 上传fir.im 中显示的changelog
+    changeLog ''
+}

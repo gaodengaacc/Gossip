@@ -1,8 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.gordon.main.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+
+        <variable
+            name="mvvm"
+            type="com.gordon.main.viewmodel.MainViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/main_layout_image">
+
+        <View
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/green"
+            android:visibility="@{mvvm.topVisible}" />
+
+        <RelativeLayout
+            android:id="@+id/top_relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="160dip"
+            android:layout_below="@+id/top_layout"
+            android:background="@color/green"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <com.gordon.main.view.MyEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="55dip"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="输入测算的名字或号码"
+                android:inputType="text"
+                android:text="@={mvvm.name}"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <com.gordon.main.view.MyTextView
+                android:id="@+id/nameText"
+                android:layout_width="match_parent"
+                android:layout_height="43dip"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@{mvvm.nameText}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:startAnimation ="@{mvvm.textAnimation}"
+                android:visibility="@{mvvm.nameTextVisible}" />
+
+            <ImageView
+                android:id="@+id/menu_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:clickable="true"
+                android:onClick="@{mvvm.onClick}"
+                android:padding="15dp"
+                android:src="@drawable/menu_button" />
+        </RelativeLayout>
+
+        <com.gordon.main.view.MyButton
+            android:id="@+id/search"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dip"
+            android:background="@drawable/button_press"
+            app:startAnimation ="@{mvvm.searchAnimation}"
+            android:onClick="@{mvvm.onClick}"
+            />
+
+        <ImageView
+            android:layout_width="320dip"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240dip"
+            android:src="@mipmap/main_layout_bg" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/top_relativelayout"
+            android:layout_marginTop="30dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameScore}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="@{mvvm.nameScoreVisible}" />
+
+                <!--<com.gordon.main.view.MyTextView-->
+                    <!--android:id="@+id/nameshare"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10dip"-->
+                    <!--android:textColor="@color/green"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:visibility="gone" />-->
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/name1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameOne}"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="@{mvvm.nameOneVisible}" />
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/name2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameTwo}"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="@{mvvm.nameTwoVisible}" />
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/name3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameThree}"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="@{mvvm.nameThreeVisible}" />
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/name4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameFour}"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="@{mvvm.nameFourVisible}" />
+
+                <com.gordon.main.view.MyTextView
+                    android:id="@+id/name5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@{mvvm.nameFive}"
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:textSize="18sp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="@{mvvm.nameFiveVisible}" />
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

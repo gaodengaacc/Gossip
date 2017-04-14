@@ -6,6 +6,9 @@ buildscript {
         maven {
             url "http://maven.bughd.com/public"
         }
+//        maven {
+//            url "https://repo1.maven.org/maven2/"
+//        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
@@ -24,7 +27,7 @@ buildscript {
         build_version = '25.0.2'
         min_version = 15
         target_version = 25
-        version_name = '2.0.0'
+        version_name = '1.0.0'
         application_id = "com.gordon.main"
     }
 }

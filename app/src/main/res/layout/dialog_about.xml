@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="mvvm"
+            type="com.gordon.main.viewmodel.AboutDialogViewModel"></variable>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/menu_layout_bg"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_layout_bg"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <com.gordon.main.view.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="关于玩法和详情"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <com.gordon.main.view.MyButton
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/dialog_about_shut"
+                    android:onClick="@{mvvm.onClick}"
+                    android:singleLine="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/green"></View>
+
+            <com.gordon.main.view.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="玩法说明："
+                android:textColor="@color/green"
+                android:textSize="18sp" />
+
+            <com.gordon.main.view.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="@{mvvm.playDes}"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <com.gordon.main.view.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="详情说明："
+                android:textColor="@color/green"
+                android:textSize="18sp" />
+
+            <com.gordon.main.view.MyTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email|phone|web"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="@{mvvm.doDes}"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

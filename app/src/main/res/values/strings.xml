@@ -1,4 +1,44 @@
 <resources>
-    <string name="app_name">Gossip</string>
+    <string name="app_name">名号大师</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="register_success">Register push success.</string>
+    <string name="register_fail">Register push fail.</string>
+    <string name="set_alias_success"> Set alias \"%1$s\" success.</string>
+    <string name="set_alias_fail"> Set alias fail for %1$s.</string>
+    <string name="unset_alias_success"> Unset alias \"%1$s\" success.</string>
+    <string name="unset_alias_fail"> Unset alias fail for %1$s.</string>
+    <string name="set_account_success"> Set account \"%1$s\" success.</string>
+    <string name="set_account_fail"> Set account fail for %1$s.</string>
+    <string name="unset_account_success"> Unset account \"%1$s\" success.</string>
+    <string name="unset_account_fail"> Unset account fail for %1$s.</string>
+    <string name="subscribe_topic_success"> Subscribe topic \"%1$s\" success.</string>
+    <string name="subscribe_topic_fail"> Subscribe topic fail for %1$s.</string>
+    <string name="unsubscribe_topic_success"> Unsubscribe topic \"%1$s\" success.</string>
+    <string name="unsubscribe_topic_fail"> Unsubscribe topic fail for %1$s.</string>
+    <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
+    <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
+
+
+    <string name="name"> 请输入您要测算的名字</string>
+    <string name="phone">手机号/QQ号/身份证号……</string>
+    <string name="search">测算</string>
+    <string name="other">以上结果，仅供参考</string>
+    <string name="my_score">余额： %1$d分 </string>
+    <string name="get_score">免费获取积分</string>
+    <string name="dialog_title">余额不足(剩余%1$d分)</string>
+    <string name="dialog_msg">测名2分/次，测号3分/次</string>
+    <string name="paly_detail">可测算姓名号码详情信息，包括吉凶以及名字的综合得分和号码的估算价值。\n名字可以是姓名、公司名等。\n号码可以是手机号、身份证号、QQ号、车牌号等。</string>
+    <string name="buy_points">充值</string>
+    <string name="details">输入名字和号码，点击八卦按钮即可测算。\n点击手机菜单或右上角菜单键可查看余额，玩法和详情，以及充值等等。\n（最好在网络哦良好下测算，网络状况不好的话可能会有点慢）.\n测算结果仅供参考。详情请咨询：\nQQ：1838231208 \n 新浪微博：名号大师</string>
+    <string name="buy_desc">号码的最后两位最好是81数吉数\n比如 135xxxxxx37\n最好选又顺又吉的号。测号结果有三项。\n点击菜单可以打开充值页面.\n网速快的话出结果速度快，测号第一次速度慢，连续第二次速度就快了。
+        </string>
+    <string name="shareworning">每日首次分享即可获得2积分，每月额外赠送8积分</string>
+    <string name="order_name">购买积分</string>
+    <string name="order_detail">购买积分</string>
+    <string name="point_intro">购买说明：</string>
+    <string name="buy_details">输入金额即可购买积分，一元可换一积分（如有充值问题，请联系\nQQ：1838231208 \n新浪微博：名号大师）</string>
+    <string name="buy_edit_hint">请输入充值金额(单位:元)</string>
+    <string name="buy_now">立即购买</string>
 </resources>
